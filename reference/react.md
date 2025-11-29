@@ -630,6 +630,20 @@ function GoodQuery({ filters }) {
 
 ### useSuspenseQuery
 
+> **重要限制**：useSuspenseQuery 与 useQuery 有显著差异，选择前需了解其限制。
+
+#### useSuspenseQuery 的限制
+
+| 特性 | useQuery | useSuspenseQuery |
+|------|----------|------------------|
+| `enabled` 选项 | ✅ 支持 | ❌ 不支持 |
+| `placeholderData` | ✅ 支持 | ❌ 不支持 |
+| `data` 类型 | `T \| undefined` | `T`（保证有值）|
+| 错误处理 | `error` 属性 | 抛出到 Error Boundary |
+| 加载状态 | `isLoading` 属性 | 挂起到 Suspense |
+
+#### 不支持 enabled 的替代方案
+
 ```tsx
 // ❌ 使用 useQuery + enabled 实现条件查询
 function BadSuspenseQuery({ userId }) {
@@ -657,6 +671,64 @@ function Parent({ userId }) {
       <GoodSuspenseQuery userId={userId} />
     </Suspense>
   );
+}
+```
+
+#### 错误处理差异
+
+```tsx
+// ❌ useSuspenseQuery 没有 error 属性
+function BadErrorHandling() {
+  const { data, error } = useSuspenseQuery({...});
+  if (error) return <Error />;  // error 总是 null！
+}
+
+// ✅ 使用 Error Boundary 处理错误
+function GoodErrorHandling() {
+  return (
+    <ErrorBoundary fallback={<ErrorMessage />}>
+      <Suspense fallback={<Loading />}>
+        <DataComponent />
+      </Suspense>
+    </ErrorBoundary>
+  );
+}
+
+function DataComponent() {
+  // 错误会抛出到 Error Boundary
+  const { data } = useSuspenseQuery({
+    queryKey: ['data'],
+    queryFn: fetchData,
+  });
+  return <Display data={data} />;
+}
+```
+
+#### 何时选择 useSuspenseQuery
+
+```tsx
+// ✅ 适合场景：
+// 1. 数据总是需要的（无条件查询）
+// 2. 组件必须有数据才能渲染
+// 3. 使用 React 19 的 Suspense 模式
+// 4. 服务端组件 + 客户端 hydration
+
+// ❌ 不适合场景：
+// 1. 条件查询（根据用户操作触发）
+// 2. 需要 placeholderData 或初始数据
+// 3. 需要在组件内处理 loading/error 状态
+// 4. 多个查询有依赖关系
+
+// ✅ 多个独立查询用 useSuspenseQueries
+function MultipleQueries({ userId }) {
+  const [userQuery, postsQuery] = useSuspenseQueries({
+    queries: [
+      { queryKey: ['user', userId], queryFn: () => fetchUser(userId) },
+      { queryKey: ['posts', userId], queryFn: () => fetchPosts(userId) },
+    ],
+  });
+  // 两个查询并行执行，都完成后组件渲染
+  return <Profile user={userQuery.data} posts={postsQuery.data} />;
 }
 ```
 

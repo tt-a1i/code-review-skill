@@ -37,13 +37,13 @@ This is a Claude Code skill designed to help developers conduct effective code r
 | File | Lines | Description |
 |------|-------|-------------|
 | **SKILL.md** | ~180 | Core principles + index (loads on skill activation) |
-| **reference/react.md** | ~650 | React/Next.js patterns (on-demand) |
-| **reference/vue.md** | ~200 | Vue 3 patterns (on-demand) |
-| **reference/rust.md** | ~200 | Rust patterns (on-demand) |
-| **reference/typescript.md** | ~100 | TypeScript/JS patterns (on-demand) |
-| **reference/python.md** | ~60 | Python patterns (on-demand) |
+| **reference/react.md** | ~870 | React 19/Next.js/TanStack Query v5 patterns (on-demand) |
+| **reference/vue.md** | ~920 | Vue 3.5 patterns + Composition API (on-demand) |
+| **reference/rust.md** | ~840 | Rust async/ownership/cancellation safety (on-demand) |
+| **reference/typescript.md** | ~540 | TypeScript generics/strict mode/ESLint (on-demand) |
+| **reference/python.md** | ~1070 | Python async/typing/pytest (on-demand) |
 
-**Total: ~2,000+ lines** of review guidelines and code examples, loaded on-demand per language.
+**Total: ~6,000+ lines** of review guidelines and code examples, loaded on-demand per language.
 
 ### Installation
 
@@ -197,13 +197,13 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 | 文件 | 行数 | 描述 |
 |------|------|------|
 | **SKILL.md** | ~180 | 核心原则 + 索引（技能激活时加载）|
-| **reference/react.md** | ~650 | React/Next.js 模式（按需加载）|
-| **reference/vue.md** | ~200 | Vue 3 模式（按需加载）|
-| **reference/rust.md** | ~200 | Rust 模式（按需加载）|
-| **reference/typescript.md** | ~100 | TypeScript/JS 模式（按需加载）|
-| **reference/python.md** | ~60 | Python 模式（按需加载）|
+| **reference/react.md** | ~870 | React 19/Next.js/TanStack Query v5（按需加载）|
+| **reference/vue.md** | ~920 | Vue 3.5 + Composition API（按需加载）|
+| **reference/rust.md** | ~840 | Rust async/所有权/取消安全性（按需加载）|
+| **reference/typescript.md** | ~540 | TypeScript 泛型/strict 模式/ESLint（按需加载）|
+| **reference/python.md** | ~1070 | Python async/类型注解/pytest（按需加载）|
 
-**总计：2,000+ 行**审查指南和代码示例，按语言按需加载。
+**总计：6,000+ 行**审查指南和代码示例，按语言按需加载。
 
 ### 安装
 
