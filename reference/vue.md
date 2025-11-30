@@ -492,7 +492,7 @@ watch(
   source,
   () => {
     // 可以安全访问更新后的 DOM
-    nextTick 不再需要
+    // nextTick 不再需要
   },
   { flush: 'post' }
 )

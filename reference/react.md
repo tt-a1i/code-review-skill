@@ -226,7 +226,7 @@ function Counter() {
 }
 
 // app/page.tsx (Server Component)
-function GoodServerComponent() {
+async function GoodServerComponent() {
   const data = await fetchData();  // 可以直接 await
   return (
     <div>
