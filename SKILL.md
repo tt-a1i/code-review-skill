@@ -102,8 +102,13 @@ Before diving into code, understand:
 ### Phase 2: High-Level Review (5-10 minutes)
 
 1. **Architecture & Design** - Does the solution fit the problem?
-2. **File Organization** - Are new files in the right places?
-3. **Testing Strategy** - Are there tests covering edge cases?
+   - For significant changes, consult [Architecture Review Guide](reference/architecture-review-guide.md)
+   - Check: SOLID principles, coupling/cohesion, anti-patterns
+2. **Performance Assessment** - Are there performance concerns?
+   - For performance-critical code, consult [Performance Review Guide](reference/performance-review-guide.md)
+   - Check: Algorithm complexity, N+1 queries, memory usage
+3. **File Organization** - Are new files in the right places?
+4. **Testing Strategy** - Are there tests covering edge cases?
 
 ### Phase 3: Line-by-Line Review (10-20 minutes)
 
